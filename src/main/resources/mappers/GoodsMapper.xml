@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<!-- namespace: 映射的接口的全名 -->
+<mapper namespace="cn.tedu.store.mapper.GoodsMapper">
+	<!-- 根據要搜尋的inputValue資料，找出符合的商品數 -->
+	<!-- Integer findAlls(
+		@Param("categoryId") Long categoryId,
+		@Param("brand") String brand,
+		@Param("beginPrice") Long beginPrice,
+		@Param("endPrice") Long endPrice,
+		@Param("inputValue") String inputValue
+	); -->
+	<select id="findAlls" 
+		resultType="java.lang.Integer">
+		SELECT
+			count(*)
+		FROM
+			t_goods
+		WHERE
+			status=1 AND num>0
+			<if test='categoryId != "" and categoryId != null'>
+				AND category_id=#{categoryId}
+			</if>
+			<if test='brand != "" and brand != null'>
+				AND brand=#{brand}
+			</if>
+			<if test='endPrice != "" and endPrice != null'>
+				AND price &lt;= #{endPrice}
+			</if>
+			<if test='beginPrice != "" and beginPrice != null'>
+				AND price &gt; #{beginPrice}
+			</if>
+			<if test='inputValue != "" and inputValue != null'>
+	            AND title LIKE '%${inputValue}%'
+	        </if>
+	    
+	</select>
+	
+	
+	<!-- 根據商品id修改商品的數量num -->
+	<!-- Integer updateNumById(
+		@Param("gid") Long gid,
+		@Param("num") Integer num
+	); -->
+	<update id="updateNumById">
+		UPDATE
+			t_goods
+		SET
+			num=#{num}
+		WHERE
+			id=#{gid}
+	</update>
+	
+	<!-- 根據商品id查詢商品詳情 -->
+	<!-- Goods findById(Long id); -->
+	<select id="findById" 
+		resultType="cn.tedu.store.entity.Goods">
+		SELECT 
+			id,
+			category_id AS categoryId,
+			item_type AS itemType,
+			title,
+			sell_point AS sellPoint,
+			price, num,
+			barcode, image,
+			status, priority
+		FROM 
+			t_goods 
+		WHERE 
+			id=#{id}
+	</select>
+	
+	<!-- 根據商品分類category_id查詢商品廠牌 -->
+	<!-- List<Goods> findByCategoryId(Long categoryId); -->
+	<select id="findByCategoryId" 
+		resultType="cn.tedu.store.entity.Goods">
+		SELECT DISTINCT
+			brand
+		FROM 
+			t_goods 
+		WHERE 
+			category_id=#{categoryId}
+	</select>
+	
+	<!-- 根據要搜尋的inputValue資料及目前頁數跟每頁筆數，找出符合的商品數據 -->
+	<!-- List<Goods> findData(
+		@Param("categoryId") Long categoryId,
+		@Param("brand") String brand,
+		@Param("beginPrice") Long beginPrice,
+		@Param("endPrice") Long endPrice,
+		@Param("page") Integer page,
+		@Param("pageSize") Integer pageSize,
+		@Param("inputValue") String inputValue
+	); -->
+	<select id="findData" 
+		resultType="cn.tedu.store.entity.Goods">
+		SELECT
+			id, image,
+			price, title
+		FROM
+			t_goods
+		WHERE
+			status=1 AND num>0
+			<if test='categoryId != "" and categoryId != null'>
+				AND category_id=#{categoryId}
+			</if>
+			<if test='brand != "" and brand != null'>
+				AND brand=#{brand}
+			</if>
+			<if test='endPrice != "" and endPrice != null'>
+				AND price &lt;= #{endPrice}
+			</if>
+			<if test='beginPrice != "" and beginPrice != null'>
+				AND price &gt; #{beginPrice}
+			</if>
+			<if test='inputValue != "" and inputValue != null'>
+	            AND title LIKE '%${inputValue}%'
+	        </if>
+		<!-- <if test='title != "" and title != null'> -->
+           <!--  WHERE title LIKE '%${inputValue}%' AND status=1 AND num>0 -->
+        <!-- </if> -->
+        ORDER BY 
+			id ASC
+        LIMIT
+        	#{page}, #{pageSize}
+	</select>
+
+	<!-- 根據商品分類id，查詢商品列表 -->
+	<!-- List<Goods> findByCategory(
+		@Param("categoryId") Long categoryId, 
+		@Param("offset") Integer offset, 
+		@Param("count") Integer count
+	); -->
+	<select id="findByCategory" 
+		resultType="cn.tedu.store.entity.Goods">
+		SELECT 
+			id, title,
+			price, image,
+			sell_point AS sellPoint
+		FROM 
+			t_goods 
+		WHERE 
+			category_id=#{categoryId} 
+		ORDER BY 
+			priority desc 
+		LIMIT 
+			#{offset}, #{count}
+	</select>
+	
+	<!-- 根據優先級獲取商品數據的列表 -->
+	<!-- List<Goods> findByPriority(Integer count); -->
+	<select id="findByPriority" 
+		resultType="cn.tedu.store.entity.Goods">
+		SELECT
+			id, title, price, image
+		FROM
+			t_goods
+		WHERE
+			status=1 AND num>0
+		ORDER BY
+			priority DESC
+		LIMIT
+			0, #{count}
+	</select>
+	
+	<!-- 根據新上架的時間獲取商品數據的列表 -->
+	<!-- List<Goods> findByLaunched(Integer count); -->
+	<select id="findByLaunched" 
+		resultType="cn.tedu.store.entity.Goods">
+		SELECT
+			id, title, price, image
+		FROM
+			t_goods
+		WHERE
+			status=1 AND num>0
+		ORDER BY
+			created_time DESC, id DESC
+		LIMIT
+			0, #{count}
+	</select>
+	
+</mapper>
+
+
+

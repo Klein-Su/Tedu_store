@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>學子商城</title>
+		<!--導入核心文件-->
+		<script src="../bootstrap3/js/holder.js"></script>
+		<link href="../bootstrap3/css/bootstrap.css" rel="stylesheet" type="text/css">
+		<script src="../bootstrap3/jquery-1.9.1.min.js"></script>
+		<script src="../bootstrap3/js/bootstrap.js"></script>
+		<!-- 導入 header.js -->
+		<script src="../js/header.js" defer></script>
+		<!-- 導入搜尋列表頁面的js文件 -->
+		<script src="../js/search.js" type="text/javascript" charset="utf-8"></script>
+		<!-- 導入 bootstrap 分頁的js文件 -->
+		<script src="../bootstrap3/js/bootstrap-paginator.min.js"></script>
+		<!-- 字體圖標 -->
+		<link rel="stylesheet" href="../bootstrap3/font-awesome-4.7.0/css/font-awesome.css" />
+		<link rel="stylesheet" type="text/css" href="../css/layout.css" />
+		<link rel="stylesheet" type="text/css" href="../css/top.css" />
+		<link rel="stylesheet" type="text/css" href="../css/footer.css" />
+		<link rel="stylesheet" type="text/css" href="../css/favorites.css" />
+		<link rel="stylesheet" type="text/css" href="../css/imgmove.css"/>
+		<!-- 導入獲取url上的參數的js文件 -->
+		<script src="../js/jquery-getUrlParam.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/imgmove.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+
+	<body>
+		<!--載入 header 開始-->
+		<div id="header-div"></div>
+		<!--載入 header 結束-->
+		
+		<div class="col-md-offset-1 col-md-10">
+			<b><!-- <span id="search-result" style="color: #d9534f;">筆記本</span> -->
+			<span id="search-result" style="color: #428bca;">筆記本</span>
+			</b>&nbsp;
+			<small>相關商品的搜尋結果：
+				當前頁面：<span id="search-currentPage" style="color: #d9534f;"></span>，
+				總共 <span id="search-count" style="color: #d9534f;"></span> 筆
+			</small>
+		</div>
+		<br/><br/>
+		<!-- 收藏列表 -->
+		<div id="search-list">
+		</div>
+		
+		<!-- 分頁 -->
+		<div class="col-md-offset-1 col-md-10">
+			<center>
+				<!-- 注意:3版本的分頁容器標籤是<ul>，2版本的容器標籤是<div> -->
+	   			<ul id="mypage" style="cursor: pointer;"></ul>
+			</center>
+		</div>
+		
+		<!--載入 footer 開始-->
+		<div id="footer-div"></div>
+		<!--載入 footer 結束-->
+	</body>
+
+</html>

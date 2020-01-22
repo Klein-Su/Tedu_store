@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>學子商城</title>
+		<!--導入核心文件-->
+		<script src="../bootstrap3/js/holder.js"></script>
+		<link href="../bootstrap3/css/bootstrap.css" rel="stylesheet" type="text/css">
+		<script src="../bootstrap3/jquery-1.9.1.min.js"></script>
+		<script src="../bootstrap3/js/bootstrap.js"></script>
+		<!-- jQuery v1.12.4-js -->
+		<!-- <script src="../jQuery/js/jquery-1.12.4.min.js"></script> -->
+		<!-- JQuery-ui-v1.12.1-js -->
+		<script src="../jQuery/js/jquery-ui.js"></script>
+		<!-- 導入 header.js -->
+		<script src="../js/header.js" defer></script>
+		<!-- 導入購物車列表頁面的 js 文件 -->
+		<script src="../js/cart.js" type="text/javascript" charset="utf-8"></script>
+		<!-- cookie 的 js 檔 -->
+		<!-- <script src="../bootstrap3/js/jquery.cookie.js" type="text/javascript" charset="utf-8"></script> -->
+		<!-- 字體圖標 -->
+		<link rel="stylesheet" href="../bootstrap3/font-awesome-4.7.0/css/font-awesome.css" />
+		<link rel="stylesheet" type="text/css" href="../css/layout.css" />
+		<link rel="stylesheet" type="text/css" href="../css/top.css" />
+		<link rel="stylesheet" type="text/css" href="../css/footer.css" />
+		<!-- JQuery-ui-v1.12.1-css -->
+		<link rel="stylesheet" type="text/css" href="../jQuery/css/jquery-ui.css" />
+		<!-- 導入購物車列表頁面的 css 文件 -->
+		<link rel="stylesheet" type="text/css" href="../css/cart.css" />
+		
+		<style>
+			/* 修改數量視窗 header 樣式 */
+         	.ui-widget-header,
+         	.ui-state-default {
+	            background:#428bca;
+	            border: 1px solid;
+	            color: #FFFFFF;
+	            font-weight: bold;
+         	}
+      	</style>
+		
+	</head>
+
+	<body>
+		<!--載入 header 開始-->
+		<div id="header-div"></div>
+		<!--載入 header 結束-->
+
+		<div class="col-md-offset-1 col-sm-offset-1 col-xs-offset-1 col-md-10 col-sm-10 col-xs-10">
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<h3 class="panel-title"><span class="fa fa-shopping-cart"></span> 購物車</h3>
+				</div>
+				<div class="panel-body">
+					<form id="cart-form" action="orderConfirm.html" role="form" method="get">
+						<!--購物車表格開始-->
+						<table class="cart-table" width="100%">
+							<thead>
+								<tr>
+									<th width="8%">
+										<input type="checkbox" class="ckall" onclick="checkall(this)" />全選</th>
+									<th width="110"></th>
+									<th width="29%">商品</th>
+									<th width="11%">單價</th>
+									<th width="15%">數量</th>
+									<th width="11%">金額</th>
+									<th>操作</th>
+								</tr>
+							</thead>
+							<tbody id="cart-list" class="cart-body">
+								<tr>
+									<td>
+										<input type="checkbox" class="ckitem" />
+									</td>
+									<td><img src="../images/portal/12DELLXPS13-silvery/collect.png" width="110" /></td>
+									<td>联想(Lenovo)小新Air13 Pro 13.3英寸14.8mm超轻薄笔记本电脑</td>
+									<td>¥<span id="goodsPrice1">5298</span></td>
+									<td>
+										<input type="button" value="-" class="num-btn" onclick="reduceNum(1)" />
+										<input id="goodsCount1" type="text" size="2" readonly="readonly" class="num-text" value="1">
+										<input class="num-btn" type="button" value="+" onclick="addNum(1)" />
+									</td>
+									<td><span id="goodsCast1"></span></td>
+									<td><input type="button" onclick="delCartItem(this)" class="cart-del btn btn-default btn-xs" value="刪除"/></td>
+								</tr>
+								<tr>
+									<td>
+										<input type="checkbox" class="ckitem" />
+									</td>
+									<td><img src="../images/portal/16LenovoYOGA900green/collect.png" width="110" /></td>
+									<td>戴尔(DELL)XPS13-9360-R1609 13.3</td>
+									<td>¥<span id="goodsPrice2">4988</span></td>
+									<td>
+										<input type="button" value="-" class="num-btn" onclick="reduceNum(2)" />
+										<input id="goodsCount2"  type="text" size="2" readonly="readonly" class="num-text" value="1">
+										<input class="num-btn" type="button" value="+" onclick="addNum(2)" />
+									</td>
+									<td><span  id="goodsCast2"></span></td>
+									<td><input type="button" onclick="delCartItem(this)" class="cart-del btn btn-default btn-xs" value="删除"/></td>
+								</tr>
+								<tr>
+									<td>
+										<input type="checkbox" class="ckitem" />
+									</td>
+									<td><img src="../images/portal/13LenovoIdeaPad310_silvery/collect.png" width="110" /></td>
+									<td>戴尔(DELL)魔方15MF Pro-R2505TSS灵越</td>
+									<td>¥<span id="goodsPrice3">4699</span></td>
+									<td>
+										<input type="button" value="-" class="num-btn" onclick="reduceNum(3)" />
+										<input id="goodsCount3"  type="text" size="2" readonly="readonly" class="num-text" value="1">
+										<input class="num-btn" type="button" value="+" onclick="addNum(3)" />
+									</td>
+									<td><span  id="goodsCast3"></span></td>
+									<td><input type="button" onclick="delCartItem(this)" class="cart-del btn btn-default btn-xs" value="删除"/></td>
+								</tr>
+							</tbody>
+						</table>
+						<div class="total-bar">
+							<a href="javascript:selDelCart()" class="cart-del-sel btn btn-default btn-xs">刪除所選商品</a>
+							<span class="pull-right">已選商品
+							<span id="selectCount">0</span>件 總價$
+							<span id="selectTotal">0</span>元</span>
+						</div>
+						<div>
+							<span class="pull-right">
+								<input id="submitBtn" type="button" value="  結  算  " class="btn btn-primary btn-lg link-account" />
+							</span>
+						</div>
+					</form>
+				</div>
+			</div>
+			<!-- update-count-dialog 修改商品數量 -->
+			<div id="dialog-updateCount-form" title="修改商品數量">
+				<div id="updateProductName" style="font-weight: bold;">商品標題</div>
+				<!-- <form id="updateCount-form"> -->
+			    	<fieldset>
+			    		<input type="hidden" id="updateId" value="">
+			      		<label for="count">數量：</label>
+			      		<input type="text" name="updateCount" id="updateCount" size="5" maxlength="3" min="1" max="999" value="" class="text ui-widget-content ui-corner-all">
+			      		<!-- Allow form submission with keyboard without duplicating the dialog button -->
+			      		<span>(Max: 999)</span>&nbsp;&nbsp;
+			      		<span class="validateTips" style="color: red; display: none;"></span>
+			      		<!-- <input type="submit" tabindex="-1" style="position:absolute; top:-1000px"> -->
+			    	</fieldset>
+			  	<!-- </form> -->
+			</div>
+		</div>
+
+		<!--載入 footer 開始-->
+		<div id="footer-div"></div>
+		<!--載入 footer 結束-->
+		
+		<script type="text/javascript">
+			$(function() {
+				/* //返回链接
+				$(".link-account").click(function() {
+					location.href = "orderConfirm.html";
+				}) */
+			})
+		</script>
+	</body>
+
+</html>

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>學子商城</title>
+		<!--導入核心文件-->
+		<script src="../bootstrap3/js/holder.js"></script>
+		<link href="../bootstrap3/css/bootstrap.css" rel="stylesheet" type="text/css">
+		<script src="../bootstrap3/jquery-1.9.1.min.js"></script>
+		<script src="../bootstrap3/js/bootstrap.js"></script>
+		<!-- 導入 header.js -->
+		<script src="../js/header.js" defer></script>
+		<!-- 導入新增配送地址的js文件 -->
+		<script src="../js/addAddress.js"></script>
+		<!-- 導入 台灣各縣市鄉鎮市區連動 TWzipcode.js -->
+		<script src="../jQuery/js/jquery.twzipcode.min.js"></script>
+		<!-- 字體圖標 -->
+		<link rel="stylesheet" href="../bootstrap3/font-awesome-4.7.0/css/font-awesome.css" />
+		<link rel="stylesheet" type="text/css" href="../css/layout.css" />
+		<link rel="stylesheet" type="text/css" href="../css/top.css" />
+		<link rel="stylesheet" type="text/css" href="../css/footer.css" />
+		<!-- <script type="text/javascript" src="../js/distpicker.data.js"></script>
+		<script type="text/javascript" src="../js/distpicker.js"></script> -->
+	</head>
+
+	<body>
+		<!--載入 header 開始-->
+		<div id="header-div"></div>
+		<!--載入 header 結束-->
+		
+		<div class="col-md-2 col-sm-2 col-xs-2">
+			<!--左側導航開始-->
+			<div class="panel-group" id="accordion">
+				<div class="panel panel-primary">
+					<div class="panel-heading">
+						<!--主選項：我的訂單-->
+						<h4 class="panel-title">
+                			<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">我的訂單</a>
+            			</h4>
+					</div>
+					<div id="collapseOne" class="panel-collapse collapse">
+						<div class="panel-body">
+							<div><a href="orders.html">全部訂單</a></div>
+							<div><a href="orders.html">待付款</a></div>
+							<div><a href="orders.html">待收貨</a></div>
+							<div><a href="orders.html">待評價</a></div>
+							<div><a href="orders.html">退貨退款</a></div>
+
+						</div>
+					</div>
+
+				</div>
+				<div class="panel panel-primary">
+					<div class="panel-heading">
+						<!--主選項：資料修改-->
+						<h4 class="panel-title">
+               			<a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">資料修改</a>
+            		</h4>
+					</div>
+					<div id="collapseTwo" class="panel-collapse collapse in">
+						<div class="panel-body">
+							<div><a href="password.html">修改密碼</a></div>
+							<div><a href="userdata.html">個人資料</a></div>
+							<div><a href="upload.html">上傳頭像</a></div>
+							<div><a href="address.html"><b>收貨管理</b></a></div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+			<!--左側導航結束-->
+
+		</div>
+		<div class="col-md-10 col-sm-10 col-xs-10">
+			<div class="panel panel-primary">
+				<ul class="nav nav-tabs">
+					<li><a href="password.html">修改密碼</a></li>
+					<li><a href="userdata.html">個人資料</a></li>
+					<li><a href="upload.html">上傳頭像</a></li>
+					<li class="active"><a href="#" style="background-color: #428bca !important; color: #fff;">配送地址</a></li>
+
+				</ul>
+				<div class="panel-body">
+					<!--新增配送地址表單開始-->
+					<form id="form-address" class="form-horizontal" role="form">
+						<div class="form-group">
+							<label class="col-md-2 col-sm-2 col-xs-2 control-label"><span style="color: #d9534f;"><b>*</b>&nbsp;</span>收件人：</label>
+							<div class="col-md-8 col-sm-8 col-xs-8">
+								<input id="name" name="name" type="text" class="form-control" placeholder="請輸入收件人姓名">
+								<div id="name-error" style="color: red; display: none;">請填寫收件人姓名</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-md-2 col-sm-2 col-xs-2 control-label"><span style="color: #d9534f;"><b>*</b>&nbsp;</span>配送地址：</label>
+							<div id="twzipcode">
+								<div class="col-md-3 col-sm-3 col-xs-3" data-role="county"></div>
+								<div class="col-md-3 col-sm-3 col-xs-3" data-role="district"></div>
+								<div class="col-md-2 col-sm-2 col-xs-2" data-role="zipcode"></div>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-md-2 col-sm-2 col-xs-2 control-label"><span style="color: #d9534f;"><b>*</b>&nbsp;</span>詳細地址：</label>
+							<div class="col-md-8 col-sm-8 col-xs-8">
+								<input id="address" type="text" name="address" class="form-control" placeholder="例：忠孝東路五段68號3樓" />
+								<div id="address-error" style="color: red; display: none;">請填寫完整配送地址</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-md-2 col-sm-2 col-xs-2 control-label"><span style="color: #d9534f;"><b>*</b>&nbsp;</span>手機：</label>
+							<div class="col-md-3 col-sm-3 col-xs-3">
+								<input id="phone" name="phone" maxlength="10" type="text" class="form-control" placeholder="例：0912345678">
+								<div id="phone-error" style="color: red; display: none;">請填寫聯絡的手機號碼</div>
+							</div>
+							<label class="col-md-2 col-sm-2 col-xs-2 control-label">電話(市話)：</label>
+							<div class="col-md-3 col-sm-3 col-xs-3">
+								<input id="tel" name="tel" maxlength="10" type="text" class="form-control" placeholder="例：0229871234">
+								<div id="tel-error" style="color: red; display: none;">電話格式不符</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-md-2 col-sm-2 col-xs-2 control-label">地址類型：</label>
+							<div class="col-md-8 col-sm-8 col-xs-8">
+								<input name="tag" type="text" class="form-control" placeholder="例：家、公司或者學校">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-md-2 col-sm-2 col-xs-2 control-label"><a href="address.html">返回</a>&nbsp;&nbsp;&nbsp;</label>
+							<div class="col-md-10 col-sm-10 col-xs-10">
+								<input id="btn-submit" type="button" class="col-md-1 btn btn-primary" value="新增" />
+								<input id="btn-reset" type="button" class="col-md-offset-1 col-md-1 btn btn-primary" value="重置" />
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+
+		<!--載入 footer 開始-->
+		<div id="footer-div"></div>
+		<!--載入 footer 結束-->
+	</body>
+
+</html>

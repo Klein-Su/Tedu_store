@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<!-- namespace: 映射的接口的全名 -->
+<mapper namespace="cn.tedu.store.mapper.GoodsCategoryMapper">
+	<!-- 根據父級id獲取子級的商品分類的數據的列表 -->
+	<!-- List<GoodsCategory> findByParent(Integer parentId); -->
+	<select id="findByParent" 
+		resultType="cn.tedu.store.entity.GoodsCategory">
+		SELECT
+			id, parent_id AS parentId, name
+		FROM 
+			t_goods_category
+		<if test='parent_id != "" and parent_id != null and parent_id != -1'> 
+            WHERE parent_id=#{parentId} 
+        </if>
+		ORDER BY 
+			sort_order desc
+		<!-- LIMIT
+			0, 30 -->
+	</select>
+	
+</mapper>
+
+
+

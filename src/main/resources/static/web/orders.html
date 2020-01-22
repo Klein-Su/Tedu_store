@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>學子商城</title>
+		<!--導入核心文件-->
+		<script src="../bootstrap3/js/holder.js"></script>
+		<link href="../bootstrap3/css/bootstrap.css" rel="stylesheet" type="text/css">
+		<script src="../bootstrap3/jquery-1.9.1.min.js"></script>
+		<script src="../bootstrap3/js/bootstrap.js"></script>
+		<!-- 導入 header.js -->
+		<script src="../js/header.js" defer></script>
+		<!-- 導入訂單列表頁面的js文件 -->
+		<script src="../js/orders.js"></script>
+		<!-- 字體圖標 -->
+		<link rel="stylesheet" href="../bootstrap3/font-awesome-4.7.0/css/font-awesome.css" />
+		<link rel="stylesheet" type="text/css" href="../css/layout.css" />
+		<link rel="stylesheet" type="text/css" href="../css/top.css" />
+		<link rel="stylesheet" type="text/css" href="../css/footer.css" />
+	</head>
+
+	<body>
+		<!--載入 header 開始-->
+		<div id="header-div"></div>
+		<!--載入 header 結束-->
+
+		<div class="col-md-2 col-sm-2 col-xs-2">
+			<!-- 左側導航開始 -->
+			<div class="panel-group" id="accordion">
+				<div class="panel panel-primary">
+					<div class="panel-heading">
+						<!-- 主選項：我的訂單-->
+						<h4 class="panel-title">
+                			<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">我的訂單</a>
+            			</h4>
+					</div>
+					<div id="collapseOne" class="panel-collapse collapse in">
+						<div class="panel-body">
+							<div><a href="orders.html"><b>全部訂單</b></a></div>
+							<div><a href="orders.html">待付款</a></div>
+							<div><a href="orders.html">待收貨</a></div>
+							<div><a href="orders.html">待評價</a></div>
+							<div><a href="orders.html">退貨退款</a></div>
+						</div>
+					</div>
+				</div>
+				<div class="panel panel-primary">
+					<div class="panel-heading">
+						<!-- 主選項：資料修改 -->
+						<h4 class="panel-title">
+               			<a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">資料修改</a>
+            		</h4>
+					</div>
+					<div id="collapseTwo" class="panel-collapse collapse">
+						<div class="panel-body">
+							<div><a href="password.html"><b>修改密碼</b></a></div>
+							<div><a href="userdata.html">個人資料</a></div>
+							<div><a href="upload.html">上傳頭像</a></div>
+							<div><a href="address.html">收貨管理</a></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--左侧导航结束-->
+		<div id="order-list" class="col-md-10 col-sm-10 col-xs-10">
+			<!-- <div class="panel panel-primary">
+				<div class="panel-heading">
+					<h4 class="panel-title">
+               			訂單號碼：1101000001 / 下單時間：2018-12-1 17:50:30 / 收貨人：八戒
+            		</h4>
+				</div>
+				<div class="panel-body">
+					<table class="orders-table" width="100%">
+						<thead>
+							<tr>
+								<th width="110"></th>
+								<th width="35%">商品</th>
+								<th width="10%">單價</th>
+								<th width="8%">數量</th>
+								<th width="10%">小計</th>
+								<th width="10%">售後</th>
+								<th width="10%">狀態</th>
+								<th width="10%">操作</th>
+							</tr>
+						</thead>
+						<tbody class="orders-body">
+							<tr>
+								<td><img src="../images/portal/12DELLXPS13-silvery/collect.png" width="110" /></td>
+								<td>聯想(Lenovo)小新Air13 Pro 13.3英寸14.8mm超輕薄筆記本電腦</td>
+								<td>$ <span>21,192</span></td>
+								<td>1件</td>
+								<td>$ <span>21,192</span></td>
+								<td><a href="#">申請售後</a></td>
+								<td>
+									<div>已出貨</div>
+									<div><a href="orderInfo.html">訂單詳情</a></div>
+								</td>
+								<td><a href="#" class="btn btn-default btn-xs">確認收貨</a></td>
+							</tr>
+							<tr>
+								<td><img src="../images/portal/16LenovoYOGA900green/collect.png" width="110" /></td>
+								<td>戴爾(DELL)XPS13-9360-R1609 13.3</td>
+								<td>$ <span>18,784</span></td>
+								<td>2件</td>
+								<td>$ <span>37,568</span></td>
+								<td><a href="#">申請售後</a></td>
+								<td>
+									<div>已出貨</div>
+									<div><a href="orderInfo.html">訂單詳情</a></div>
+								</td>
+								<td><a href="#" class="btn btn-default btn-xs">確認收貨</a></td>
+							</tr>
+							<tr>
+								<td><img src="../images/portal/13LenovoIdeaPad310_silvery/collect.png" width="110" /></td>
+								<td>戴爾(DELL)魔方15MF Pro-R2505TSS靈越</td>
+								<td>$ <span>23,996</span></td>
+								<td>1件</td>
+								<td>$ <span>23,996</span></td>
+								<td><a href="#">申請售後</a></td>
+								<td>
+									<div>已出貨</div>
+									<div><a href="orderInfo.html">訂單詳情</a></div>
+								</td>
+								<td><a href="#" class="btn btn-default btn-xs">確認收貨</a></td>
+							</tr>
+						</tbody>
+					</table>
+					<div>
+						<span class="pull-right">訂單總金額：$ 82,756</span>
+						
+					</div>
+				</div>
+			</div>
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<h4 class="panel-title">
+               			訂單號碼：1101000301 / 下單時間：2018-12-2 20:32:17 / 收貨人：八戒
+            		</h4>	
+				</div>
+				<div class="panel-body">
+					<table class="orders-table" width="100%">
+						<thead>
+							<tr>
+								<th width="110"></th>
+								<th width="35%">商品</th>
+								<th width="10%">單價</th>
+								<th width="8%">數量</th>
+								<th width="10%">小計</th>
+								<th width="10%">售後</th>
+								<th width="10%">狀態</th>
+								<th width="10%">操作</th>
+							</tr>
+						</thead>
+						<tbody class="orders-body">
+							<tr>
+								<td><img src="../images/portal/12DELLXPS13-silvery/collect.png" width="110" /></td>
+								<td>聯想(Lenovo)小新Air13 Pro 13.3英寸14.8mm超輕薄筆記本電腦</td>
+								<td>$ <span>21,192</span></td>
+								<td>1件</td>
+								<td>$ <span>21,192</span></td>
+								<td><a href="#">申請售後</a></td>
+								<td>
+									<div>已出貨</div>
+									<div><a href="orderInfo.html">訂單詳情</a></div>
+								</td>
+								<td><a href="#" class="btn btn-default btn-xs">確認收貨</a></td>
+							</tr>
+						</tbody>
+					</table>
+					<div>
+						<span class="pull-right">訂單總金額：$ 21,192</span>
+					</div>
+				</div>
+			</div> -->
+		</div>
+
+		<!--載入 footer 開始-->
+		<div id="footer-div"></div>
+		<!--載入 footer 結束-->
+	</body>
+
+</html>

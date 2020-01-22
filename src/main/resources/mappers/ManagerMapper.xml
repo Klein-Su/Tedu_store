@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<!-- namespace: 映射的接口的全名 -->
+<mapper namespace="cn.tedu.store.mapper.ManagerMapper">
+	<!-- 新增後台人員資料 -->
+	<!-- Integer addnew(Manager manager) -->
+	<insert id="addnew"
+        parameterType="cn.tedu.store.entity.Manager"
+        useGeneratedKeys="true"
+        keyProperty="id">
+        INSERT INTO t_manager (
+        	name,
+            username, password, 
+            salt, role_id,
+            email, is_delete,
+            created_user, created_time,
+            modified_user, modified_time
+        ) VALUES (
+        	#{name},
+            #{username}, #{password},
+            #{salt}, #{roleId},
+            #{email}, #{isDelete},
+            #{createdUser}, #{createdTime},
+            #{modifiedUser}, #{modifiedTime}
+        )
+    </insert>
+    
+    <!-- 停權(軟刪除)後台人員資料 -->
+	<!-- Integer deleteById(
+		@Param("id")Integer id,
+		@Param("modifiedUser") String modifiedUser,
+		@Param("modifiedTime") Date modifiedTime
+	); -->
+	<update id="deleteById">
+		UPDATE
+			t_manager
+		SET
+			is_delete = '1',
+			modified_user = #{modifiedUser},
+			modified_time = #{modifiedTime}
+		WHERE
+			id=#{id}
+	</update>
+    
+    <!-- 根據要搜尋的inputValue資料，找出符合的人員數 -->
+	<!-- Integer findAlls(String inputValue); -->
+	<select id="findAlls" 
+		resultType="java.lang.Integer">
+		SELECT
+			count(*)
+		FROM
+			t_manager
+		WHERE
+			is_delete=0 AND 
+			name LIKE '%${inputValue}%'
+	</select>
+    
+    <!-- 查詢管理人員列表詳情得到ManagerVO的映射配置 -->
+	<resultMap id="Manager_VO_Map" 
+		type="cn.tedu.store.vo.ManagerVO">
+		<id column="id" property="id" />
+		<result column="name" property="name" />
+		<result column="username" property="username" />
+		<result column="role_id" property="roleId" />
+		<result column="email" property="email" />
+		<result column="m_staff" property="mStaff" />
+		<result column="is_delete" property="isDelete" />
+		<result column="roleName" property="roleName" />
+	</resultMap>
+    
+    <!-- 根據後台人員id查詢用戶信息 -->
+    <!-- Manager findById(Integer id); -->
+    <select id="findById" 
+    	resultType="cn.tedu.store.entity.Manager">
+    	SELECT
+    		id, name,
+    		username, email,
+    		password, salt, 
+    		role_id AS roleId,
+    		m_staff AS mStaff, 
+    		m_product AS mProduct,
+    		is_delete AS isDelete
+    	FROM
+    		t_manager
+    	WHERE
+    		id=#{id}
+    </select>
+	
+	<!-- 根據後台人員帳號查詢用戶資料 -->
+	<!-- 應用於：註冊、登入 -->
+	<!-- Manager findByUsername(String username) -->
+	<select id="findByUsername" 
+		resultType="cn.tedu.store.entity.Manager">
+		SELECT 
+			id, name, username, password,
+			salt, role_id,
+			is_delete AS isDelete
+		FROM
+			t_manager
+		WHERE
+			username=#{username}
+	</select>
+	
+	<!-- 根據要搜尋的inputValue資料及目前頁數跟每頁筆數，找出符合的人員清單列表 -->
+	<!-- List<ManagerVO> findList(
+		@Param("page") Integer page,
+		@Param("pageSize") Integer pageSize,
+		@Param("inputValue") String inputValue
+	); -->
+	<select id="findList" resultMap="Manager_VO_Map">
+		SELECT
+			t_manager.id,
+			t_manager.name, username,
+			role_id,
+			email,
+			t_role.name AS roleName
+		FROM
+			t_manager
+		INNER JOIN
+			t_role
+		ON
+			t_manager.role_id=t_role.id
+		WHERE
+			t_manager.name LIKE '%${inputValue}%' AND
+			<!-- t_manager.role_id != '1' AND -->
+			t_manager.is_delete = 0
+		ORDER BY
+			t_manager.id DESC
+		LIMIT
+			#{page}, #{pageSize}
+	</select>
+	
+</mapper>
+
+

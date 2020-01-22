@@ -1,0 +1,339 @@
+<style>
+	.dropdown-menu {
+		background: #000000; 
+		opacity: .8;
+	}
+	.dropdown-menu > li > a {
+		color: #FFFFFF;
+	}
+</style>
+
+<header class="header">
+	<!--學子商城logo-->
+	<div class="col-md-3 col-sm-3 col-xs-3">
+		<a href="/web/index.html">
+			<img src="../images/index/stumalllogo.png" title="首頁" />
+		</a>
+	</div>
+	<!--快捷選項-->
+	<div class="col-md-9 col-sm-9 col-xs-9 top-item" >
+		<ul class="list-inline" style="float: right;" >
+			<li class="favorites-li" style="display: none;">
+				<a href="/web/favorites.html"><span class="fa fa-heart"></span>&nbsp;收藏</a>
+			</li>
+			<li class="li-split favorites-li" style="display: none;">|</li>
+			<li class="orders-li" style="display: none;">
+				<a href="/web/orders.html"><span class="fa fa-file-text"></span>&nbsp;訂單</a>
+			</li>
+			<li class="li-split orders-li" style="display: none;">|</li>
+			<li class="cart-li" style="display: none;">
+				<a href="/web/cart.html"><span class="fa fa-cart-plus"></span>&nbsp;購物車</a>
+			</li>
+			<li class="li-split cart-li" style="display: none;">|</li>
+			<!-- <li class="management-li" style="display: none;">
+				<div class="btn-group">
+					<button type="button" class="btn btn-link dropdown-toggle" data-toggle="dropdown">
+						<span id="top-dropdown-btn"><span class="fa fa-gears"></span>&nbsp;管理 <span class="caret"></span></span>
+					</button>
+					<ul class="dropdown-menu top-dropdown-ul" role="menu">
+						<li><a href="password.html">修改密碼</a></li>
+						<li><a href="userdata.html">個人資料</a></li>
+						<li><a href="upload.html">上傳頭像</a></li>
+						<li><a href="address.html">收貨管理</a></li>
+					</ul>
+				</div>
+			</li> -->
+			<!-- <li class="li-split">|</li>  -->
+			<li id="login-li">
+				<a href="#" data-toggle="modal" data-target="#login-modal">
+					<span class="fa fa-user"></span>&nbsp;登入
+				</a>
+			</li>
+		</ul>
+	</div>
+</header>
+
+<!--導航-->
+<!--分割導航和頂部-->
+<div class="clearfix"></div>
+<hr />
+<div id="header-search-div" class="col-md-12 col-sm-12 col-xs-12 top-nav" align="center">
+	<form id="search-form" action="/web/search.html" class="form-inline" role="form" style="float: center;">
+		<div class="form-group col-md-offset-1 col-md-6">
+			<div class="btn-group col-md-4">
+			    <button id="selected_category" type="button" class="btn btn-success dropdown-toggle col-md-10" data-toggle="dropdown" data-categoryId="" data-type="分類" style="border-radius: 4px 0 0 4px; height: 40px;">分類</button>
+			    <button type="button" class="btn btn-success dropdown-toggle col-md-2" data-toggle="dropdown" style="height: 40px;" aria-haspopup="true" aria-expanded="true" >
+				    <i class="fa fa-angle-down" aria-hidden="true"></i>
+				</button>
+			    <ul id="category-menu" class="dropdown-menu" role="menu">
+			        <li>
+			            <a href="#" data-categoryId="">不拘</a>
+			        </li>
+			        <li>
+			            <a href="#" data-categoryId="238">記事本/便條紙</a>
+			        </li>
+			        <li>
+			            <a href="#" data-categoryId="241">筆類</a>
+			        </li>
+			        <li>
+			            <a href="#" data-categoryId="239">計算機</a>
+			        </li>
+			        <li>
+			            <a href="#" data-categoryId="236">文件用品</a>
+			        </li>
+			        <li>
+			            <a href="#" data-categoryId="163">筆記型電腦</a>
+			        </li>
+			        <li>
+			            <a href="#" data-categoryId="917">雙肩包</a>
+			        </li>
+			    </ul>
+			</div>
+			<div class="btn-group col-md-4">
+			    <button id="selected_brand" type="button" class="btn btn-success dropdown-toggle col-md-10" data-toggle="dropdown" data-type="廠牌" style="border-radius: 4px 0 0 4px; height: 40px;">廠牌</button>
+			    <button type="button" class="btn btn-success dropdown-toggle col-md-2" data-toggle="dropdown" style="height: 40px;" aria-haspopup="true" aria-expanded="true" >
+				    <i class="fa fa-angle-down" aria-hidden="true"></i>
+				</button>
+			    <ul id="brand-menu" class="dropdown-menu" role="menu">
+			        <li>
+			            <a href="#" data-brand="">不拘</a>
+			        </li>
+			        <!-- <li>
+			            <a href="#">華碩(ASUS)</a>
+			        </li>
+			        <li>
+			            <a href="#">戴爾(Dell)</a>
+			        </li>
+			        <li>
+			            <a href="#">聯想(Lenovo)</a>
+			        </li>
+			        <li>
+			            <a href="#">AVITA</a>
+			        </li> -->
+			    </ul>
+			</div>
+			<div class="btn-group col-md-4">
+		    <button id="selected_price" type="button" class="btn btn-success dropdown-toggle col-md-10" data-toggle="dropdown" data-type="價錢" style="border-radius: 4px 0 0 4px; height: 40px;">價錢</button>
+		    <button type="button" class="btn btn-success dropdown-toggle col-md-2" data-toggle="dropdown" style="height: 40px;" aria-haspopup="true" aria-expanded="true" >
+			    <i class="fa fa-angle-down" aria-hidden="true"></i>
+			</button>
+		    <ul id="price-menu" class="dropdown-menu" role="menu">
+		        <li>
+		            <a href="#" data-beginPrice="" data-endPrice="">不拘</a>
+		        </li>
+		        <li>
+		            <a href="#" data-beginPrice="" data-endPrice="10000">10,000元 以下</a>
+		        </li>
+		        <li>
+		            <a href="#" data-beginPrice="10000" data-endPrice="15000">10,001元 ~ 15,000元</a>
+		        </li>
+		        <li>
+		            <a href="#" data-beginPrice="15000" data-endPrice="20000">15,001元 ~ 20,000元</a>
+		        </li>
+		        <li>
+		            <a href="#" data-beginPrice="20000" data-endPrice="25000">20,001元 ~ 25,000元</a>
+		        </li>
+		        <li>
+		            <a href="#" data-beginPrice="25000" data-endPrice="30000">25,001元 ~ 30,000元</a>
+		        </li>
+		        <li>
+		            <a href="#" data-beginPrice="30000" data-endPrice="35000">30,001元 ~ 35,000元</a>
+		        </li>
+		        <li>
+		            <a href="#" data-beginPrice="35000" data-endPrice="40000">35,001元 ~ 40,000元</a>
+		        </li>
+		        <li>
+		            <a href="#" data-beginPrice="40000" data-endPrice="45000">40,001元 ~ 45,000元</a>
+		        </li>
+		        <li>
+		            <a href="#" data-beginPrice="45000" data-endPrice="50000">45,001元 ~ 50,000元</a>
+		        </li>
+		        <li>
+		            <a href="#" data-beginPrice="50000" data-endPrice="">50,001元 以上</a>
+		        </li>
+		    </ul>
+		</div>
+		</div>
+		<div class="form-group col-md-4">
+			<input id="categoryId" name="categoryId" type="hidden" value=""/>
+			<input id="categoryName" name="categoryName" type="hidden" value=""/>
+			<input id="brand" name="brand" type="hidden" value=""/>
+			<input id="beginPrice" name="beginPrice" type="hidden" value=""/>
+			<input id="endPrice" name="endPrice" type="hidden" value=""/>
+			<input type="text" class="form-control" id="search" name="search" style="height: 40px;" placeholder="快速搜索">
+			<button type="submit" class="btn btn-success" style="height: 40px;"><span class="fa fa-search"></span></button>
+		</div>
+	</form>
+	<!-- <div class="col-md-6 col-sm-6 col-xs-6">
+		<ul class="nav nav-pills">
+			<li>
+				<a href="#"></a>
+			</li>
+			<li class="active"><a href="index.html"><span class="fa fa-home"></span></a></li>
+			<li><a href="#">秒殺</a></li>
+			<li><a href="#">優惠券</a></li>
+			<li><a href="#">學子VIP</a></li>
+			<li><a href="#">外賣</a></li>
+			<li><a href="#">超市</a></li>
+		</ul>
+	</div>
+	<div class="col-md-6 col-sm-6 col-xs-6">
+		<form id="search-form" action="search.html" class="form-inline" role="form" style="float: right;">
+			<div class="form-group">
+				<input type="text" class="form-control" id="search" name="search" placeholder="請輸入商品名稱進行搜索">
+				<button type="submit" class="btn btn-default btn-sm"><span class="fa fa-search"></span></button>
+			</div>
+		</form>
+	</div> -->
+</div>
+<!--導航結束-->
+
+<!-- 登入 Modal -->
+<div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header bg-primary" style="border-top-left-radius: 4px; border-top-right-radius: 4px;">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel"><span class="fa fa-user"></span>&nbsp;登入</h4>
+      </div>
+      <div class="modal-body">
+      	<!--表單開始-->
+		<form id="form-login" method="post" class="form-horizontal" role="form">
+			<!-- 帳號 -->
+			<div class="form-group">
+				<label for="username" class="col-md-2 col-sm-2 col-xs-2 control-label">帳號：</label>
+				<div class="col-md-8 col-sm-8 col-xs-8">
+					<input name="username" type="text" class="form-control" id="username" maxlength="20" placeholder="請輸入帳號">
+					<div id="username-error" style="color: red; display: none;">帳號不能為空</div>
+				</div>
+			</div>
+			<!-- 密碼 -->
+			<div class="form-group">
+				<label for="password" class="col-md-2 col-sm-2 col-xs-2 control-label"> 密碼：</label>
+				<div class="col-md-8 col-sm-8 col-xs-8">
+					<input name="password" type="password" class="form-control" id="password"  placeholder="請輸入密碼">
+					<div id="password-error" style="color: red; display: none;">密碼不能為空</div>
+				</div>
+			</div>
+		</form>
+      </div>
+      <div class="modal-footer">
+      	<!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
+        <!--提交按鈕-->
+        <button id="btn-login" type="button" class="btn btn-primary" onclick="login()">登入</button>
+        <small>還沒有帳號？</small><a id="reg-link" href="#" data-toggle="modal" data-target="#register-modal">註冊</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="clearfix"></div>
+<!-- 註冊 Modal -->
+<div class="modal fade" id="register-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header bg-info" style="border-top-left-radius: 4px; border-top-right-radius: 4px;">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel"><span class="fa fa-user"></span>&nbsp;註冊</h4>
+      </div>
+      <div class="modal-body">
+      	<!--表單開始-->
+		<form id="form-register" method="post" class="form-horizontal" role="form">
+			<!-- 帳號 -->
+			<div class="form-group">
+				<label for="regUsername" class="col-md-3 col-sm-3 col-xs-3 control-label">帳號：</label>
+				<div class="col-md-8 col-sm-8 col-xs-8">
+					<input name="regUsername" type="text" class="form-control" id="regUsername" maxlength="20" placeholder="請輸入以字母開頭的6~20字以內的英文及數字">
+					<div id="reg-username-error" style="color: red; display: none;">帳號不能為空</div>
+				</div>
+			</div>
+			<!-- 密碼 -->
+			<div class="form-group">
+				<label for="regPassword" class="col-md-3 col-sm-3 col-xs-3 control-label"> 密碼：</label>
+				<div class="col-md-8 col-sm-8 col-xs-8">
+					<input name="regPassword" type="password" class="form-control" id="regPassword" maxlength="20" placeholder="請輸入6~20字以內的英文及數字組合">
+					<div id="reg-password-error" style="color: red; display: none;">密碼不能為空</div>
+				</div>
+			</div>
+			<!--確認密碼-->
+			<div class="form-group">
+				<label for="confirmPassword" class="col-md-3 col-sm-3 col-xs-3 control-label"> 確認密碼：</label>
+				<div class="col-md-8 col-sm-8 col-xs-8">
+					<input id="confirmPassword" type="password" class="form-control" maxlength="20" placeholder="請再次輸入密碼">
+					<div id="reg-confirm-password-error" style="color: red; display: none;">確認密碼不能為空</div>
+				</div>
+			</div>
+		</form>
+      </div>
+      <div class="modal-footer">
+      	<!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
+        <!--提交按鈕-->
+        <button id="btn-login" type="button" class="btn btn-info" onclick="register()">立即註冊</button>
+        <small>已經有帳號？</small><a id="login-link" href="#" data-toggle="modal" data-target="#login-modal">登入</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+	//關閉視窗前呼叫
+	$("#login-modal").on("hide.bs.modal",function(e){
+		//清空帳號&密碼 和 隱藏錯誤訊息提示
+		$("#username").val("");
+		$("#password").val("");
+		$("#username-error").hide();
+		$("#password-error").hide();
+	});
+	//關閉視窗前呼叫
+	$("#register-modal").on("hide.bs.modal",function(e){
+		//清空帳號&密碼 和 隱藏錯誤訊息提示
+		/* $("#regUsername").val("");
+		$("#regPassword").val("");
+		$("#confirmPassword").val(""); */
+		$("#reg-username-error").hide();
+		$("#reg-password-error").hide();
+		$("#reg-confirm-password-error").hide();
+	});
+	//打開登入介面則關閉註冊頁面，反之亦然
+	$("#reg-link").click(function(){ $("#login-modal").modal("hide"); });
+	$("#login-link").click(function(){ $("#register-modal").modal("hide"); });
+	
+	//選擇上排進階分類搜尋按鈕
+	$("#category-menu").find("li a").click(function(){
+		//清空廠牌
+		$("#brand-menu").empty();
+		$("#brand-menu").append('<li><a href="#">不拘</a></li>');
+		$("#selected_brand").html("廠牌");
+		$("#selected_brand").attr("data-type","廠牌");
+		$("#brand").val("");
+		//獲取 li 的 data-categoryId
+		var categoryId = $(this).attr("data-categoryId");
+		$("#categoryId").val(categoryId);
+		//判斷 li 的 選擇值
+		if($(this).html() == "不拘") {
+			var selectedItem = $(this).parent().parent().parent().find("button:eq(0)").attr("data-type");
+			$("#categoryName").val("");
+		} else {
+			var selectedItem = $(this).html();
+			$("#categoryName").val($(this).html());
+		}
+		$(this).parent().parent().parent().find("button:eq(0)").html(selectedItem);
+		$(this).parent().parent().parent().find("button:eq(0)").attr("data-categoryId", categoryId);
+		
+		//獲取廠牌
+		getBrandByCategoryId();
+	});
+	
+	//選擇上排進階價錢搜尋按鈕
+	$("#price-menu").find("li a").click(function(){
+		//判斷 li 的 選擇值
+		if($(this).html() == "不拘") {
+			var selectedItem = $(this).parent().parent().parent().find("button:eq(0)").attr("data-type");
+		} else {
+			var selectedItem = $(this).html();
+		}
+		$("#beginPrice").val($(this).attr("data-beginPrice"));
+		$("#endPrice").val($(this).attr("data-endPrice"));
+		$(this).parent().parent().parent().find("button:eq(0)").html(selectedItem);
+	});
+</script>

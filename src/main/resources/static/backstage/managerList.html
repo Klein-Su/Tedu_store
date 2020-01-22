@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>學子商城</title>
+		<!--導入核心文件-->
+		<script src="../bootstrap3/js/holder.js"></script>
+		<link href="../bootstrap3/css/bootstrap.css" rel="stylesheet" type="text/css">
+		<script src="../bootstrap3/jquery-1.9.1.min.js"></script>
+		<script src="../bootstrap3/js/bootstrap.js"></script>
+		<!-- 導入 backstageHeader.js -->
+		<script src="../js/backstageHeader.js" defer></script>
+		<!-- 導入後台人員功能清單的js文件 -->
+		<script src="../js/managerList.js"></script>
+		<!-- 導入 bootstrap 分頁的js文件 -->
+		<script src="../bootstrap3/js/bootstrap-paginator.min.js"></script>
+		<!-- 字體圖標 -->
+		<link rel="stylesheet" href="../bootstrap3/font-awesome-4.7.0/css/font-awesome.css" />
+		<link rel="stylesheet" type="text/css" href="../css/layout.css" />
+		<link rel="stylesheet" type="text/css" href="../css/top.css" />
+		<link rel="stylesheet" type="text/css" href="../css/footer.css" />
+		<link rel="stylesheet" type="text/css" href="../css/reg.css" />
+	</head>
+
+	<body>
+		<!--載入 header 開始-->
+		<div id="header-div"></div>
+		<!--載入 header 結束-->
+		
+		<!--article-->
+		<div class="container">
+		    <div id="manager-div" class="col-md-12">
+		    	<div class="panel panel-info">
+					<div class="panel-heading">
+				    	<i class="fa fa-users fa-1x" aria-hidden="true"></i>&nbsp;人員管理
+				    </div>
+				    <div class="panel-body">
+						<div class="col-md-2">
+							<a href="addManager.html">
+								<input id="btn-add" type="button" class="btn btn-sm btn-info" value="新增人員" style="display: none;" />
+								<input id="managerId" type="hidden" value="">
+								<input id="managerRoleId" type="hidden" value="">
+							</a>
+						</div>
+						<div class="col-md-offset-4 col-md-6">
+							<form id="search-form" action="" class="form-inline" role="form" style="float: right;" onkeydown="if(event.keyCode==13){return false;}">
+								<div class="form-group" style="float: right;">
+									<input type="text" class="form-control" id="search" name="search" placeholder="請輸入人員姓名進行搜索">
+									<button id="btn-search" type="button" class="btn btn-default btn-sm"><span class="fa fa-search"></span></button>
+								</div>
+							</form>
+						</div>
+						<div class="col-md-12">
+							<!-- 人員清單 -->
+							<table class="table table-striped">
+								<thead>
+									<tr>
+										<th width="10%">編號</th>
+										<th width="10%">帳號</th>
+										<th width="10%">姓名</th>
+										<th width="10%">職稱</th>
+										<th width="40%">E-mail</th>
+										<th width="20%" colspan="2">操作</th>
+									</tr>
+								</thead>
+								<tbody id="manager-list">
+									<tr>
+										<td>1</td>
+										<td>root</td>
+										<td>最大管理員</td>
+										<td>管理員</td>
+										<td>root@tedu.com</td>
+										<td><a class="btn btn-xs btn-info" ><span class="fa fa-edit"></span> 修改</a></td>
+										<td><a class="btn btn-xs btn-danger" ><span class="fa fa-trash-o"></span> 刪除</a></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<!-- 分頁 -->
+						<div class="col-md-offset-1 col-md-10" align="center">
+							<!-- 注意:3版本的分頁容器標籤是<ul>，2版本的容器標籤是<div> -->
+					   		<ul id="mypage" style="cursor: pointer;"></ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 登入 Modal -->
+		<div class="modal fade" id="update-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		  <div class="modal-dialog" role="document">
+		    <div class="modal-content">
+		      <div class="modal-header bg-primary" style="border-top-left-radius: 4px; border-top-right-radius: 4px;">
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		        <h4 class="modal-title" id="myModalLabel"><span class="fa fa-edit"></span>&nbsp;修改人員資料</h4>
+		      </div>
+		      <div class="modal-body">
+		      	<!--表單開始-->
+				<form id="form-login" method="post" class="form-horizontal" role="form">
+					<!-- 姓名 -->
+					<div class="form-group">
+						<label for="name" class="col-md-3 col-sm-3 col-xs-3 control-label">姓名：</label>
+						<div class="col-md-8 col-sm-8 col-xs-8">
+							<input name="name" type="text" class="form-control" id="name" maxlength="20" placeholder="請輸入姓名">
+						</div>
+					</div>
+					<!-- 帳號 -->
+					<div class="form-group">
+						<label for="username" class="col-md-3 col-sm-3 col-xs-3 control-label">帳號：</label>
+						<div class="col-md-8 col-sm-8 col-xs-8">
+							<span id="username" style="position: absolute;top: 6px;"></span>
+						</div>
+					</div>
+					<!-- 密碼 -->
+					<div class="form-group">
+						<label for="password" class="col-md-3 col-sm-3 col-xs-3 control-label"> 密碼：</label>
+						<div class="col-md-8 col-sm-8 col-xs-8">
+							<input name="password" type="password" class="form-control" id="password"  placeholder="請輸入密碼">
+							<div id="password-error" style="color: red; display: none;">密碼不能為空</div>
+						</div>
+					</div>
+					<!-- 身份 -->
+					<div class="form-group">
+						<label for="role_id" class="col-md-3 col-sm-3 col-xs-3 control-label"> 身份：</label>
+						<div class="col-md-3">
+							<select id="roleId" name="roleId" class="form-control">
+								<option value="1">管理員</option>
+								<option value="2">經理</option>
+								<option value="3">一般員工</option>
+							</select>
+						</div>
+					</div>
+					<!-- 信箱 -->
+					<div class="form-group">
+						<label for="email" class="col-md-3 col-sm-3 col-xs-3 control-label"> 信箱：</label>
+						<div class="col-md-8">
+							<input name="email" type="text" class="form-control" id="email"  placeholder="請輸入信箱">
+						</div>
+					</div>
+					<!-- 信箱 -->
+					<div class="form-group">
+						<label for="roleId" class="col-md-3 col-sm-3 col-xs-3 control-label"> 人員權限：</label>
+						<div class="col-md-8">
+							<div class="custom-control custom-checkbox" style="position: absolute;top: 6px;">
+							  	<input type="checkbox" class="custom-control-input" id="mStaff1" name="mStaff" value="1">
+							  	<label class="custom-control-label" for="roleId1">查詢</label>&nbsp;
+							  	<input type="checkbox" class="custom-control-input" id="mStaff2" name="mStaff" value="2">
+							  	<label class="custom-control-label" for="roleId2">修改</label>&nbsp;
+							  	<input type="checkbox" class="custom-control-input" id="mStaff3" name="mStaff" value="4">
+							  	<label class="custom-control-label" for="roleId3">刪除</label>&nbsp;
+							  	<input type="checkbox" class="custom-control-input" id="mStaff4" name="mStaff" value="8">
+							  	<label class="custom-control-label" for="roleId4">新增</label>
+							</div>
+						</div>
+					</div>
+				</form>
+		      </div>
+		      <div class="modal-footer">
+		      	<!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
+		        <!--提交按鈕-->
+		        <button id="btn-login" type="button" class="btn btn-primary" onclick="">確認</button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+		
+		<!--載入 footer 開始-->
+		<div id="footer-div"></div>
+		<!--載入 footer 結束-->
+	</body>
+
+</html>

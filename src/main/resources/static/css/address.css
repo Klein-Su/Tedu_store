@@ -1,0 +1,55 @@
+/**** 自行添加的cart css樣式 ****/
+fieldset { 
+	padding:0; 
+	border:0; 
+	margin-top:25px;
+}
+/* fieldset > label { 
+	display:block; 
+} */
+filedset > input.text {
+	margin-bottom:12px;
+	width:95%;
+	padding: .4em; 
+}
+h1 { 
+	font-size: 1.2em; 
+	margin: .6em 0; 
+}
+
+.ui-widget-header, .ui-state-default {
+	background:#b9cd6d;
+	color: #FFFFFF;
+	font-weight: bold; 
+}
+
+.ui-dialog .ui-state-error { 
+	padding: .3em; 
+}
+
+.validateTips { 
+	border: 1px solid transparent; 
+	padding: 0.3em; 
+}
+
+.updateButtonClass,
+.updateButtonClass:link,
+.updateButtonClass:hover,
+.updateButtonClass:active,
+.updateButtonClass:visited {
+	background:#428bca;
+	border: 1px solid;
+	color: #FFFFFF;
+	font-weight: bold;
+}
+
+.cancelButtonClass,
+.cancelButtonClass:link,
+.cancelButtonClass:hover,
+.cancelButtonClass:active,
+.cancelButtonClass:visited {
+	background:#d9534f;
+	border: 1px solid;
+	color: #FFFFFF;
+	font-weight: bold;
+}

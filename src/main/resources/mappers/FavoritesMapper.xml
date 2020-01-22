@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<!-- namespace: 映射的接口的全名 -->
+<mapper namespace="cn.tedu.store.mapper.FavoritesMapper">
+	<!-- 新增收藏數據 -->
+	<!-- Integer addnew(Favorites favorites); -->
+	<insert id="addnew"
+		parameterType="cn.tedu.store.entity.Favorites"
+		useGeneratedKeys="true" 
+		keyProperty="id">
+		INSERT INTO t_favorites (
+			uid, gid,
+			created_user, created_time,
+			modified_user, modified_time
+		) VALUES (
+			#{uid}, #{gid},
+			#{createdUser}, #{createdTime},
+			#{modifiedUser}, #{modifiedTime}
+		)
+	</insert>
+	
+	<!-- 根據用戶id查詢所有收藏數據的數量 -->
+	<!-- Integer findAllByUid(Integer uid); -->
+	<select id="findAllByUid" 
+		resultType="java.lang.Integer">
+		SELECT
+			count(*)
+		FROM
+			t_favorites
+		WHERE
+			uid=#{uid}
+	</select>
+	
+	<!-- 根據用戶id和商品id查詢收藏數據 -->
+	<!-- Favorites findByUidAndGid(
+		@Param("uid") Integer uid,
+		@Param("goodsId") Long goodsId
+	); -->
+	<select id="findByUidAndGid"
+		resultType="cn.tedu.store.entity.Favorites">
+		SELECT
+			id
+		FROM
+			t_favorites
+		WHERE
+			uid=#{uid} AND gid=#{goodsId}
+	</select>
+	
+	<!-- 根據id獲取收藏數據 -->
+	<!-- Favorites findById(Integer id); -->
+	<select id="findById"
+		resultType="cn.tedu.store.entity.Favorites">
+		SELECT
+			id, uid, gid
+		FROM
+			t_favorites
+		WHERE
+			id=#{id}
+	</select>
+
+	<!-- 查詢訂單詳情得到OrderVO的映射配置 -->
+	<resultMap id="Favorites_VO_Map" 
+		type="cn.tedu.store.vo.FavoritesVO">
+		<id column="id" property="id" />
+		<result column="uid" property="uid" />
+		<result column="gid" property="gid" />
+		<collection property="goods" 
+			ofType="cn.tedu.store.entity.Goods">
+			<result column="goodsId" property="id" />
+			<result column="image" property="image" />
+			<result column="price" property="price" />
+			<result column="title" property="title" />
+		</collection>
+	</resultMap>
+
+	<!-- 根據用戶id查詢該用戶的收藏數據列表 -->
+	<!-- List<FavoritesVO> findByUid(
+		@Param("uid") Integer uid, 
+		@Param("page") Integer page
+	); -->
+	<select id="findByUid" resultMap="Favorites_VO_Map">
+		SELECT
+			t_favorites.id,
+			uid, gid,
+			t_goods.id AS goodsId,
+			image, price,
+			title
+		FROM
+			t_favorites
+		INNER JOIN
+			t_goods
+		ON
+			t_favorites.gid=t_goods.id
+		WHERE
+			uid=#{uid}
+		ORDER BY
+			id DESC
+		LIMIT
+			#{page}, 12
+	</select>
+	
+	<!-- 根據id刪除收藏數據 -->
+	<!-- Integer deleteById(Integer id); -->
+	<delete id="deleteById">
+		DELETE FROM t_favorites WHERE id=#{id}
+	</delete>
+	
+</mapper>
+
+
+
+

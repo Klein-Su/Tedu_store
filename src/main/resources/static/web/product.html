@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>學子商城</title>
+		<!--導入核心文件-->
+		<script src="../bootstrap3/js/holder.js"></script>
+		<link href="../bootstrap3/css/bootstrap.css" rel="stylesheet" type="text/css">
+		<script src="../bootstrap3/jquery-1.9.1.min.js"></script>
+		<script src="../bootstrap3/js/bootstrap.js"></script>
+		<!-- 字體圖標 -->
+		<link rel="stylesheet" href="../bootstrap3/font-awesome-4.7.0/css/font-awesome.css" />
+		<link rel="stylesheet" type="text/css" href="../css/layout.css" />
+		<link rel="stylesheet" type="text/css" href="../css/top.css" />
+		<link rel="stylesheet" type="text/css" href="../css/footer.css" />
+		<link rel="stylesheet" type="text/css" href="../css/product.css" />
+		<link rel="stylesheet" type="text/css" href="../css/imgmove.css" />
+		<!-- 導入 header.js -->
+		<script src="../js/header.js" defer></script>
+		<!-- 導入商品詳情的js文件 -->
+		<script src="../js/product.js" type="text/javascript" charset="utf-8"></script>
+		<!-- 導入獲取url上的參數的js文件 -->
+		<script src="../js/jquery-getUrlParam.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/imgmove.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+
+	<body>
+		<!--載入 header 開始-->
+		<div id="header-div"></div>
+		<!--載入 header 結束-->
+
+		<!--商品信息展示開始-->
+		<div class="col-md-offset-1 col-md-10">
+		<!-- <div class="col-md-offset-1 col-sm-offset-1 col-xs-offset-1 col-md-10 col-sm-10 col-xs-10"> -->
+			<div class="col-md-6">
+
+				<div data="1" class="img-big move-img col-md-12">
+					<!-- <img id="img1-big" src="../images/portal/11DELLran7000R1605Ssilvery/1_big.png" width="100%" /> -->
+					<img id="img1-big" src="" width="100%" />
+				</div>
+				<div data="2" class="img-big move-img col-md-12">
+					<!-- <img id="img2-big" src="../images/portal/11DELLran7000R1605Ssilvery/2_big.png" width="100%" /> -->
+					<img id="img2-big" src="" width="100%" />
+				</div>
+				<div data="3" class="img-big move-img col-md-12">
+					<!-- <img id="img3-big" src="../images/portal/11DELLran7000R1605Ssilvery/3_big.png" width="100%" /> -->
+					<img id="img3-big" src="" width="100%" />
+				</div>
+				<div data="4" class="img-big move-img col-md-12">
+					<!-- <img id="img4-big" src="../images/portal/11DELLran7000R1605Ssilvery/4_big.png" width="100%" /> -->
+					<img id="img4-big" src="" width="100%" />
+				</div>
+				<div data="5" class="img-big move-img col-md-12">
+					<!-- <img id="img5-big" src="../images/portal/11DELLran7000R1605Ssilvery/5_big.png" width="100%" /> -->
+					<img id="img5-big" src="" width="100%" />
+				</div>
+
+				<div data="1" class="col-md-2 img-small">
+					<!-- <img id="img1-small" src="../images/portal/11DELLran7000R1605Ssilvery/1.jpg" width="100%" /> -->
+					<img id="img1-small" src="" width="100%" />
+				</div>
+				<div data="2" class="col-md-2 img-small">
+					<!-- <img id="img2-small" src="../images/portal/11DELLran7000R1605Ssilvery/2.jpg" width="100%" /> -->
+					<img id="img2-small" src="" width="100%" />
+				</div>
+				<div data="3" class="col-md-2 img-small">
+					<!-- <img id="img3-small" src="../images/portal/11DELLran7000R1605Ssilvery/3.jpg" width="100%" /> -->
+					<img id="img3-small" src="" width="100%" />
+				</div>
+				<div data="4" class="col-md-2 img-small">
+					<!-- <img id="img4-small" src="../images/portal/11DELLran7000R1605Ssilvery/4.jpg" width="100%" /> -->
+					<img id="img4-small" src="" width="100%" />
+				</div>
+				<div data="5" class="col-md-2 img-small">
+					<!-- <img id="img5-small" src="../images/portal/11DELLran7000R1605Ssilvery/5.jpg" width="100%" /> -->
+					<img id="img5-small" src="" width="100%" />
+				</div>
+
+			</div>
+
+			<div class="col-md-6">
+				<!-- <h3 id="goods-title" class="col-md-12 title-row-1" title="戴爾Dell 燃700R1605銀色">戴爾Dell 燃700R1605銀色</h3> -->
+				<!-- <h3 id="goods-title" class="col-md-12" title="戴爾Dell 燃700R1605銀色">戴爾Dell 燃700R1605銀色</h3>
+				<h4 class="col-md-12 text-row-1"><small id="goods-sell-point">僅上海，廣州，沈陽倉有貨！預購從速！</small></h4> -->
+				<h3 id="goods-title" class="col-md-12" title=""></h3>
+				<h4 class="col-md-12 text-row-1"><small id="goods-sell-point"></small></h4>
+				<div class="col-md-12 price-bar">
+					<small>學員售價：</small> $<span id="goods-price"></span>
+					<div><small>*退貨補運費 *7天無理由退貨 *24小時快速退款 </small></div>
+				</div>
+				<form class="form-inline product-form col-md-12" role="form">
+					<div class="col-md-12 form-space">
+						<label for="num">數量：</label>
+						<input id="numDown" type="button" value="-" class="num-btn" />
+						<input id="num" type="text" size="3" maxlength="3" class="num-text" value="1">
+						<input id="numUp"class="num-btn" type="button" value="+" />
+						&nbsp;&nbsp;<span><b>(Max: 999)</b></span>
+						<div id="num-error" style="color: red; display: none;">數量格式不對</div>
+					</div>
+					<div class="col-md-12 form-space">
+						<h4><small><b>學子商城</b>發貨並提供售後服務,今日下單,明日送達</small></h4>
+
+					</div>
+					<div class="col-md-12 form-space">
+						<input id="btn-to-buy" class="btn btn-primary btn-lg btn-block" type="button" value="立即購買">
+					</div>
+
+					<div class="col-md-12 form-space">
+						<input type="hidden" id="favoritesId" value="">
+						<button id="btn-add-to-cart" type="button" class="btn btn-default go-cart">
+							<span class="fa fa-cart-plus"></span> 加入購物車
+						</button>
+						<button id="btn-add-to-favorites" type="button" class="btn btn-default">
+							<span class="fa fa-heart-o"></span> 加入收藏
+						</button>
+						<button id="btn-delete-from-favorites" type="button" class="btn btn-danger" style="display: none;">
+							<span class="fa fa-heart"></span> 取消收藏
+						</button>
+					</div>
+				</form>
+
+			</div>
+
+		</div>
+		<!--商品信息展示结束-->
+		<!--售后信息开始-->
+
+		<div class="col-md-offset-1 col-md-10">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h3 class="panel-title">售後保固</h3>
+				</div>
+				<div class="panel-body ">
+					<div class="col-md-12 ">
+						<div class="col-md-1 saled-icon"><span class="fa fa-shield"></span></div>
+						<div class="col-md-11 saled-title">品質保證</div>
+					</div>
+					<div class="col-md-12 ">
+						<div class="col-md-offset-1 col-md-11 saled-content">學子商城向您保證所售商品均為正品行貨，學子商城自營商品開具機打發票或電子發票。</div>
+					</div>
+
+					<div class="col-md-12 ">
+						<div class="col-md-1 saled-icon"><span class="fa fa-wrench"></span></div>
+						<div class="col-md-11 saled-title">貼心服務</div>
+					</div>
+					<div class="col-md-12 ">
+						<div class="col-md-offset-1 col-md-11 saled-content">本產品全台聯保，享受三包服務，保固期為：二年質保</div>
+					</div>
+
+					<div class="col-md-12 ">
+						<div class="col-md-1 saled-icon"><span class="fa fa-heartbeat"></span></div>
+						<div class="col-md-11 saled-title">品質承諾</div>
+					</div>
+					<div class="col-md-12 ">
+						<div class="col-md-offset-1 col-md-11 saled-content">學子商城銷售並發貨的商品，由學子商城提供發票和相應的售後服務。請您放心購買！
+							<br /> 注：因廠家會在沒有任何提前通知的情況下更改產品包裝、產地或者一些附件，本司不能確保客戶收到的貨物與商城圖片、產地、附件說明完全一致。只能確保為原廠正貨！並且保證與當時市場上同樣主流新品一致。若本商城沒有及時更新，請大家諒解！
+						</div>
+					</div>
+
+					<div class="col-md-12 ">
+						<div class="col-md-1 saled-icon"><span class="fa fa-globe"></span></div>
+						<div class="col-md-11 saled-title">全台保固</div>
+					</div>
+					<div class="col-md-12 ">
+						<div class="col-md-offset-1 col-md-11 saled-content">
+							憑質保證書及學子商城發票，可享受全國聯保服務（奢侈品、鐘錶除外；奢侈品、鐘錶由學子商城聯繫保修，享受法定三包售後服務），與您親臨商場選購的商品享受相同的質量保證。學子商城還為您提供具有競爭力的商品價格和運費政策，請您放心購買！
+							<br /> 注：因廠家會在沒有任何提前通知的情況下更改產品包裝、產地或者一些附件，本司不能確保客戶收到的貨物與商城圖片、產地、附件說明完全一致。只能確保為原廠正貨！並且保證與當時市場上同樣主流新品一致。若本商城沒有及時更新，請大家諒解！
+
+						</div>
+					</div>
+
+					<div class="col-md-12 ">
+						<div class="col-md-1 saled-icon"><span class="fa fa-reply"></span></div>
+						<div class="col-md-11 saled-title">退貨保障</div>
+					</div>
+					<div class="col-md-12 ">
+						<div class="col-md-offset-1 col-md-11 saled-content">客戶購買學子商城商品7日內（含7日，自客戶收到商品之日起計算），在保證商品完好的前提下，可無理由退貨。（部分商品除外，詳情請見各商品細則）</div>
+					</div>
+
+					<div class="col-md-12 saled-content">
+
+						<small><b>權利聲明：</b><br />
+						所有商品信息、商品諮詢等內容，是學子商城重要的經營資源，未經許可，禁止非法轉載使用。<br />
+						注：本站商品信息均來自於合作方，其真實性、準確性和合法性由信息擁有者（合作方）負責。本站不提供任何保證，並不承擔任何法律責任。</small>
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+		<!--載入 footer 開始-->
+		<div id="footer-div"></div>
+		<!--載入 footer 結束-->
+	</body>
+
+</html>

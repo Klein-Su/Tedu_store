@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<!-- namespace: 映射的接口的全名 -->
+<mapper namespace="cn.tedu.store.mapper.OrderMapper">
+	<!-- 插入訂單數據 -->
+	<!-- Integer insertOrder(Order order); -->
+	<insert id="insertOrder"
+		parameterType="cn.tedu.store.entity.Order"
+		useGeneratedKeys="true" 
+		keyProperty="id">
+		INSERT INTO t_order (
+			uid,
+			recv_name, recv_phone,
+			recv_city, recv_zip,
+			recv_district, recv_address,
+			pay, order_time, status,
+			created_user, created_time,
+			modified_user, modified_time
+		) VALUES (
+			#{uid},
+			#{recvName}, #{recvPhone},
+			#{recvCity}, #{recvZip},
+			#{recvDistrict}, #{recvAddress},
+			#{pay}, #{orderTime}, #{status},
+			#{createdUser}, #{createdTime},
+			#{modifiedUser}, #{modifiedTime}
+		)
+	</insert>
+	
+	<!-- 插入訂單商品數據 -->
+	<!-- Integer insertOrderItem(OrderItem orderItem); -->
+	<insert id="insertOrderItem"
+		parameterType="cn.tedu.store.entity.OrderItem"
+		useGeneratedKeys="true" 
+		keyProperty="id">
+		INSERT INTO t_order_item (
+			oid,
+			goods_id, 
+			goods_image, goods_title, 
+			goods_count, goods_price, 
+			created_user, created_time,
+			modified_user, modified_time
+		) VALUES (
+			#{oid},
+			#{goodsId}, 
+			#{goodsImage}, #{goodsTitle}, 
+			#{goodsCount}, #{goodsPrice}, 
+			#{createdUser}, #{createdTime},
+			#{modifiedUser}, #{modifiedTime}
+		)
+	</insert>
+	
+	<!-- 查詢訂單詳情得到OrderVO的映射配置 -->
+	<resultMap id="Order_VO_Map" 
+		type="cn.tedu.store.vo.OrderVO">
+		<id column="id" property="id" />
+		<result column="uid" property="uid" />
+		<result column="recv_name" property="recvName" />
+		<result column="recv_phone" property="recvPhone" />
+		<result column="recv_city" property="recvCity" />
+		<result column="recv_district" property="recvDistrict" />
+		<result column="recv_address" property="recvAddress" />
+		<result column="recv_zip" property="recvZip" />
+		<result column="pay" property="pay" />
+		<result column="order_time" property="orderTime" />
+		<result column="status" property="status" />
+		<collection property="items" 
+			ofType="cn.tedu.store.entity.OrderItem">
+			<result column="orderItemId" property="id" />
+			<result column="oid" property="oid" />
+			<result column="goods_id" property="goodsId" />
+			<result column="goods_image" property="goodsImage" />
+			<result column="goods_title" property="goodsTitle" />
+			<result column="goods_price" property="goodsPrice" />
+			<result column="goods_count" property="goodsCount" />
+		</collection>
+	</resultMap>
+	
+	<!-- 根據id查詢訂單詳情 -->
+	<!-- OrderVO findById(Integer id); -->
+	<select id="findById" resultMap="Order_VO_Map">
+		SELECT
+			t_order.id,
+			uid,
+			recv_name, recv_phone,
+			recv_city, recv_zip,
+			recv_district, recv_address,
+			pay, status,
+			goods_id,
+			goods_image, goods_title,
+			goods_price, goods_count
+		FROM
+			t_order
+		INNER JOIN
+			t_order_item
+		ON
+			t_order.id = t_order_item.oid
+		WHERE
+			t_order.id = #{id}
+	</select>
+	
+	<!-- 根據用戶id查詢該用戶的訂單數據列表 -->
+	<!-- List<OrderVO> findByUid(Integer uid); -->
+	<select id="findByUid" resultMap="Order_VO_Map">
+		SELECT
+			t_order.id,
+			uid, recv_name,
+			pay, order_time,
+			status,
+			t_order_item.id AS orderItemId,
+			oid, goods_id, 
+			goods_image, goods_title, 
+			goods_count, goods_price
+		FROM
+			t_order
+		INNER JOIN
+			t_order_item
+		ON
+			t_order.id=t_order_item.oid
+		WHERE
+			uid=#{uid}
+			<!-- <if test="#{typeStatus} != 'all'">
+				&& status=#{typeStatus},
+			</if> -->
+		ORDER BY
+			t_order.order_time DESC
+	</select>
+	
+</mapper>
+
+
+
+

@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<!-- namespace: 映射的接口的全名 -->
+<mapper namespace="cn.tedu.store.mapper.UserMapper">
+	<!-- 新增用戶資料 -->
+	<!-- Integer addnew(User user) -->
+	<insert id="addnew"
+        parameterType="cn.tedu.store.entity.User"
+        useGeneratedKeys="true"
+        keyProperty="id">
+        INSERT INTO t_user (
+            username, password, 
+            salt, gender,
+            phone, email,
+            avatar, is_delete,
+            created_user, created_time,
+            modified_user, modified_time
+        ) VALUES (
+            #{username}, #{password},
+            #{salt}, #{gender},
+            #{phone}, #{email},
+            #{avatar}, #{isDelete},
+            #{createdUser}, #{createdTime},
+            #{modifiedUser}, #{modifiedTime}
+        )
+    </insert>
+    
+    <!-- 用戶更新密碼 -->
+    <!-- Integer updatePassword(
+		@Param("uid") Integer uid,
+		@Param("password") String password,
+		@Param("modifiedUser") String modifiedUser,
+		@Param("modifiedTime") Date modifiedTime
+	); -->
+    <update id="updatePassword">
+    	UPDATE
+    		t_user
+    	SET
+    		password=#{password},
+    		modified_user=#{modifiedUser},
+    		modified_time=#{modifiedTime}
+    	WHERE
+    		id=#{uid}
+    </update>
+    
+    <!-- 更新用戶頭像 -->
+    <!-- Integer updateAvatar(
+			@Param("uid") Integer uid,
+			@Param("avatar") String avatar,
+			@Param("modifiedUser") String modifiedUser,
+			@Param("modifiedTime") Date modifiedTime
+	); -->
+    <update id="updateAvatar">
+    	UPDATE
+    		t_user
+    	SET
+    		avatar=#{avatar},
+    		modified_user=#{modifiedUser},
+    		modified_time=#{modifiedTime}
+    	WHERE
+    		id=#{uid}
+    </update>
+    
+    <!-- 修改用戶資料 (不含用戶名、密碼與頭像) -->
+    <!-- Integer updateInfo(User user); -->
+    <update id="updateInfo">
+    	UPDATE 
+    		t_user
+		SET
+			<if test="gender != null">
+				gender=#{gender},
+			</if>
+			<if test="phone != null">
+				phone=#{phone},
+			</if>
+			<if test="email != null">
+				email=#{email},
+			</if>
+    		modified_user=#{modifiedUser},
+    		modified_time=#{modifiedTime}
+		WHERE 
+    		id=#{id}
+    </update>
+    
+    <!-- 根據用戶id查詢用戶信息 -->
+    <!-- User findById(Integer id); -->
+    <select id="findById" 
+    	resultType="cn.tedu.store.entity.User">
+    	SELECT
+    		username,
+    		gender, phone, email,
+    		password,salt,
+    		is_delete AS isDelete
+    	FROM
+    		t_user
+    	WHERE
+    		id=#{id}
+    </select>
+	
+	<!-- 根據用戶帳號查詢用戶資料 -->
+	<!-- 應用於：註冊、登入 -->
+	<!-- User findByUsername(String username) -->
+	<select id="findByUsername" 
+		resultType="cn.tedu.store.entity.User">
+		SELECT 
+			id, username, password,
+			salt, avatar,
+			is_delete AS isDelete
+		FROM
+			t_user
+		WHERE
+			username=#{username}
+	</select>
+	
+</mapper>
+
+

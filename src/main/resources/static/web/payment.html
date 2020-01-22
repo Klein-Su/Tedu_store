@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>學子商城</title>
+		<!--導入核心文件-->
+		<script src="../bootstrap3/js/holder.js"></script>
+		<link href="../bootstrap3/css/bootstrap.css" rel="stylesheet" type="text/css">
+		<script src="../bootstrap3/jquery-1.9.1.min.js"></script>
+		<script src="../bootstrap3/js/bootstrap.js"></script>
+		<!-- 導入 header.js -->
+		<script src="../js/header.js" defer></script>
+		<!-- 導入的js文件 -->
+		<script src="../js/payment.js" type="text/javascript" charset="utf-8"></script>
+		<!-- cookie 的 js 檔 -->
+		<!-- <script src="../bootstrap3/js/jquery.cookie.js" type="text/javascript" charset="utf-8"></script> -->
+		<!-- 字體圖標 -->
+		<link rel="stylesheet" href="../bootstrap3/font-awesome-4.7.0/css/font-awesome.css" />
+		<link rel="stylesheet" type="text/css" href="../css/layout.css" />
+		<link rel="stylesheet" type="text/css" href="../css/webindex.css" />
+		<link rel="stylesheet" type="text/css" href="../css/footer.css" />
+		<link rel="stylesheet" type="text/css" href="../css/top.css" />
+		<link rel="stylesheet" type="text/css" href="../css/orderConfirm.css" />
+		<link rel="stylesheet" type="text/css" href="../css/cart.css" />
+		<!-- 導入獲取url上的參數的js文件 -->
+		<script src="../js/jquery-getUrlParam.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+
+	<body>
+		<!--載入 header 開始-->
+		<div id="header-div"></div>
+		<!--載入 header 結束-->
+		
+		<div class="col-md-offset-1 col-sm-offset-1 col-xs-offset-1 col-md-10 col-sm-10 col-xs-10">
+
+			<div class="col-md-4 col-sm-4 col-xs-4">
+				<div class="col-md-12 col-sm-12 col-xs-12 order-bar-undo">
+					1.確認訂單資訊
+					<span class="pull-right"><span class="fa fa-chevron-right"></span></span>
+				</div>
+
+			</div>
+			<div class="col-md-4 col-sm-4 col-xs-4">
+				<div class="col-md-12 col-sm-12 col-xs-12 order-bar-active">
+					2.線上付款
+					<span class="pull-right"><span class="fa fa-chevron-right"></span></span>
+				</div>
+			</div>
+			<div class="col-md-4 col-sm-4 col-xs-4">
+				<div class="col-md-12 col-sm-12 col-xs-12 order-bar-undo">
+					3.付款成功
+				</div>
+			</div>
+			
+			<div class="col-md-12">
+				<form role="form">
+					<div class="form-group">
+						<label for="name">
+							<h4>選擇支付方式：</h4>
+						</label>
+						<div class="text-center">
+							<label class="radio-inline">
+								<input type="radio" name="optionsRadios" id="optionsRadios1" checked="checked"> 信用卡
+							</label>
+						
+							<label  class="radio-inline">
+								<input type="radio" name="optionsRadios" id="optionsRadios2" > ATM轉帳
+							</label>
+						
+							<label  class="radio-inline">
+								<input type="radio" name="optionsRadios" id="optionsRadios3" > 貨到付款
+							</label>
+						
+							<!-- <label  class="radio-inline">
+								<input type="radio" name="optionsRadios" id="optionsRadios4" > 貨到付款
+							</label> -->
+						</div>
+					</div>
+					<div id="card-div" class="panel panel-primary" style="display: ;">
+						<div class="panel-heading">
+							<h3 class="panel-title">信用卡資訊</h3>
+						</div>
+						<div class="panel-body">
+							<div class="form-group">
+								<img alt="VISA" width="50" height="28" src="/images/dummy-card-visa-3deb7467104fb1614b0c39d010a33520.svg">
+								<img alt="MasterCard" width="50" height="28" src="/images/dummy-card-master-fd3540baa491c2f3b34105113dad3e7a.svg">
+								<img alt="JCB" width="50" height="28" src="/images/dummy-card-jcb-0da9f8486f6a66027336d9d5aba61d8b.svg">
+							</div>
+							<div class="form-group">
+								<span style="weight:bold;font-size: 24px;">輸入卡片資訊</span>&nbsp;(限輸入本人信用卡資料)
+							</div>
+							<div class="form-group">
+								<label class="col-md-2 col-sm-2 col-xs-2 control-label">
+									<span style="position: absolute; top: 8px;">
+										<span style="color: #d9534f;"><b>*</b>&nbsp;</span>信用卡號碼：
+									</span>
+								</label>
+								<div class="col-md-9 col-sm-9 col-xs-9">
+									<input id="card_number" name="card_number" type="text" class="form-control" value="">
+								</div>
+							</div>
+							<br/><br/><br/>
+							<div class="form-group">
+								<label class="col-md-2 col-sm-2 col-xs-2 control-label">
+									<span style="position: absolute; top: 8px;">
+										<span style="color: #d9534f;"><b>*</b>&nbsp;</span>持卡人姓名：
+									</span>
+								</label>
+								<div class="col-md-9 col-sm-9 col-xs-9">
+									<input id="card_owner" name="card_owner" type="text" class="form-control" value="">
+									<div>
+										<span style="color: #959595;">如果使用台灣發行的信用卡付款，請用中文輸入持卡人姓名</span>
+									</div>
+								</div>
+							</div>
+							<br/><br/><br/>
+							<div class="form-group">
+								<label class="col-md-2 col-sm-2 col-xs-2 control-label">
+									<span style="position: absolute; top: 8px;">
+										<span style="color: #d9534f;"><b>*</b>&nbsp;</span>有效期限：
+									</span>
+								</label>
+								<div class="col-md-2 col-sm-2 col-xs-2">
+									<select id="valid_month" name="valid_month" class="form-control">
+										<option value=>MM</option>
+										<option value="1">01</option>
+										<option value="2">02</option>
+										<option value="3">03</option>
+										<option value="4">04</option>
+										<option value="5">05</option>
+										<option value="6">06</option>
+										<option value="7">07</option>
+										<option value="8">08</option>
+										<option value="9">09</option>
+										<option value="10">10</option>
+										<option value="11">11</option>
+										<option value="12">12</option>
+									</select>
+								</div>
+								<div class="col-md-1 col-sm-1 col-xs-1">
+									<span style="position: absolute; top: 8px;">
+									/
+									</span>
+								</div>
+								<div class="col-md-2 col-sm-2 col-xs-2">
+									<select id="valid_year" name="valid_year" class="form-control">
+										<option value=>YYYY</option>
+										<option value="2019">2019</option>
+										<option value="2020">2020</option>
+										<option value="2021">2021</option>
+										<option value="2022">2022</option>
+										<option value="2023">2023</option>
+										<option value="2024">2024</option>
+										<option value="2025">2025</option>
+										<option value="2026">2026</option>
+									</select>
+								</div>
+								<label class="col-md-2 col-sm-2 col-xs-2 control-label">
+									<span style="position: absolute; top: 8px;">
+										<span style="color: #d9534f;"><b>*</b>&nbsp;</span>安全碼：
+									</span>
+								</label>
+								<div class="col-md-2 col-sm-2 col-xs-2">
+									<input id="security_code" name="security_code" type="text" class="form-control" value="" placeholder="CVV">
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					<div id="atm-div" class="panel panel-primary" style="display: none;">
+						<div class="panel-heading">
+							<h3 class="panel-title">ATM轉帳</h3>
+						</div>
+						<div class="panel-body">
+							<p>您在學子商城購買商品時，可利用全台【ATM】進行付款的動作。當您在網站上完成訂單購買程序後，經確認訂單後，會由學子商城自動發信【轉入帳號】至您在學子商城所登錄的信箱中。</p>
+							<p>※ 提醒您在使用【ATM】的機器時請選擇繳費功能，再輸入信件中的轉入帳號，完成交易後金融機構會收取相關的手續費用(一般是15元)，我們並不會向您收取任何的費用，請您安心使用。</p>
+							<p>※ 完成訂購手續，不代表交易已經完成或契約已經成立，倘若交易條件有誤、商品無存貨、服務無法提供、或有其他正當理由之情形，學子商城得於您訂購後兩個工作日內拒絕該筆交易。當您選擇以其他方式付款時，亦適用前述確認機制。</p>
+						</div>
+					</div>
+					
+					<div id="arrived-div" class="panel panel-primary" style="display: none;">
+						<div class="panel-heading">
+							<h3 class="panel-title">貨到付款</h3>
+						</div>
+						<div class="panel-body">
+							<p>您在學子商城購買商品，系統將根據您所選擇的目的地址進行配送，運費將根據訂單金額及配送位置進行試算。</p>
+							<p>訂單金額少於 NT. 5,000元，需補貼運費 NT. 60元</p>
+							<p>配送地址為離島(澎湖、金門、馬祖)，需補貼運費 NT. 100元</p>
+						</div>
+					</div>
+					
+					<div class="panel panel-info">
+						<div class="panel-heading">
+							<h3 class="panel-title">訂單資訊</h3>
+						</div>
+						<div class="panel-body">
+							<p>訂單編號：<span id="order_id">1101000301</span>，付款金額 $<span id="order_pay">5,298</span></p>
+						</div>
+					</div>
+
+					<div class="pay-bar">
+						<a href="cart.html">返回購物車</a>
+						<span class="pull-right">
+							<h3>$ <span id="confirm_pay">5,298</span> <input type="button" value="確認付款" class="btn btn-primary btn-lg link-success"/></h3>	
+						</span>
+					</div>
+				</form>
+			</div>
+		</div>
+
+		<!--載入 footer 開始-->
+		<div id="footer-div"></div>
+		<!--載入 footer 結束-->
+	</body>
+
+</html>
